@@ -34,6 +34,6 @@ public class EmployeeController {
 	public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id") Long employeeId) {
 		EmployeeDto employeeDto = employeeService.getEmployeeById(employeeId);
 		return ResponseEntity.ok(employeeDto);
-	}
+	} 
 
 }
