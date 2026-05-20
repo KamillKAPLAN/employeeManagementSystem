@@ -1,5 +1,8 @@
 package com.kkaplan.ems_backend.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.kkaplan.ems_backend.dto.EmployeeDto;
@@ -31,6 +34,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee employee = employeeRepository.findById(employeeId)
 				.orElseThrow(() -> new ResourceNotFoundException("Employee is not exists with given id : " + employeeId));
 		return EmployeeMapper.mapToEmployeeDto(employee);
+	}
+
+	@Override
+	public List<EmployeeDto> getAllEmployees() {
+		
+		List<Employee> employees = employeeRepository.findAll();		
+		return employees.stream().map(EmployeeMapper::mapToEmployeeDto).collect(Collectors.toList());
 	}
 
 }
